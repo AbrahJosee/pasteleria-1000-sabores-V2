@@ -1,13 +1,7 @@
-/*
-  contacto.js
-  Script para la validación del formulario de contacto
-*/
-
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Obtener elementos del DOM
     const form = document.getElementById('formulario-contacto');
-    if (!form) return; // Si no hay formulario, no hacer nada
+    if (!form) return; 
 
     const nombreInput = document.getElementById('nombre');
     const nombreError = document.getElementById('nombre-error');
@@ -24,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let esValido = true;
 
-        // 1. Validación Nombre [cite: 535-537]
         if (nombreInput.value.length === 0) {
             esValido = false;
             nombreInput.classList.add('is-invalid');
@@ -37,9 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nombreInput.classList.remove('is-invalid');
         }
 
-        // 2. Validación Correo [cite: 538-540]
         const emailRegex = /@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/;
-        // El correo no es 'requerido', pero si se ingresa, debe ser válido
         if (emailInput.value.length > 0) {
             if (emailInput.value.length > 100) {
                 esValido = false;
@@ -53,12 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 emailInput.classList.remove('is-invalid');
             }
         } else {
-            // Limpiar error si el campo está vacío (ya que no es requerido)
             emailInput.classList.remove('is-invalid');
         }
 
 
-        // 3. Validación Comentario [cite: 543-544, 547]
         if (comentarioInput.value.length === 0) {
             esValido = false;
             comentarioInput.classList.add('is-invalid');
@@ -72,14 +61,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
 
-        // Añadir clases de Bootstrap para mostrar errores nativos
         form.classList.add('was-validated');
 
-        // Si todo es válido
+
         if (esValido) {
             form.classList.remove('was-validated');
             alert('¡Mensaje enviado con éxito!');
-            form.reset(); // Limpiar el formulario
+            form.reset(); 
         }
     });
 });

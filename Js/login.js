@@ -1,8 +1,3 @@
-/*
-  login.js
-  Script para la validación del formulario de inicio de sesión
-*/
-
 document.addEventListener('DOMContentLoaded', function() {
     
     const form = document.getElementById('formulario-login');
@@ -12,14 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordError = document.getElementById('password-error');
 
     form.addEventListener('submit', function(event) {
-        // Prevenir el envío automático
+        
         event.preventDefault();
         event.stopPropagation();
         
         let esValido = true;
 
-        // 1. Validación de Correo
-        // Requerido, Max 100
+        
         const emailRegex = /@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/;
         if (emailInput.value.length === 0) {
             esValido = false;
@@ -37,8 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             emailInput.classList.remove('is-invalid');
         }
 
-        // 2. Validación Contraseña
-        // Requerido, entre 4 y 10 caracteres
+        
         if (passwordInput.value.length === 0) {
             esValido = false;
             passwordInput.classList.add('is-invalid');
@@ -51,15 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
             passwordInput.classList.remove('is-invalid');
         }
 
-        // Añadir clases de Bootstrap para mostrar errores (solo para campos vacíos)
+        
         form.classList.add('was-validated');
 
-        // Si todo es válido
+        
         if (esValido) {
             form.classList.remove('was-validated');
             alert('¡Inicio de sesión exitoso!');
-            // Aquí se enviaría el formulario
-            // form.submit();
+            
         }
     });
 });

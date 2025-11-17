@@ -1,6 +1,3 @@
-/* comunas.js
-  Datos para el selector de Región/Comuna [cite: 495, 496, 497]
-*/
 const regionesComunas = {
     "Región Metropolitana de Santiago": [
         "Santiago", 

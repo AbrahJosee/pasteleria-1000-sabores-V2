@@ -1,20 +1,11 @@
-/*
-  carrito.js
-  Lógica para la página del carrito.
-  - Lee el carrito de localStorage.
-  - Muestra los items (buscando datos en store.js).
-  - Calcula el total.
-*/
-
 document.addEventListener('DOMContentLoaded', function() {
 
     const carritoItemsContainer = document.getElementById('carrito-items-container');
     const carritoBtn = document.getElementById('carrito-btn');
     const subtotalEl = document.getElementById('carrito-subtotal');
     const totalEl = document.getElementById('carrito-total');
-    const envioCosto = 3500; // Costo de envío fijo
+    const envioCosto = 3500; 
 
-    // Cargar carrito desde localStorage
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     function actualizarBotonCarrito() {
@@ -33,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderCarrito() {
-        // Limpiar contenedor
         carritoItemsContainer.innerHTML = '';
         
         let subtotal = 0;
@@ -43,14 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         carrito.forEach(item => {
-            // Encontrar los datos completos del producto en 'store.js'
             const producto = productos.find(p => p.id === item.id);
-            if (!producto) return; // Producto no encontrado
+            if (!producto) return; 
 
             const itemTotal = producto.precio * item.quantity;
             subtotal += itemTotal;
 
-            // Crear el HTML para el item (basado en Mockup Figura 15)
             const itemHtml = `
                 <div class="card mb-3 shadow-sm border-0">
                     <div class="card-body">
@@ -80,16 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
             carritoItemsContainer.innerHTML += itemHtml;
         });
 
-        // Actualizar totales
         subtotalEl.textContent = `$${subtotal.toLocaleString('es-CL')}`;
         totalEl.textContent = `$${(subtotal + envioCosto).toLocaleString('es-CL')}`;
     }
 
-    // --- Asignar Eventos a los botones del Carrito ---
     carritoItemsContainer.addEventListener('click', function(event) {
         const target = event.target;
         
-        // Buscar el botón clickeado (considerando el <i> dentro)
         const botonAumentar = target.closest('.btn-aumentar');
         const botonDisminuir = target.closest('.btn-disminuir');
         const botonEliminar = target.closest('.btn-eliminar');
@@ -107,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if(item && item.quantity > 1) {
                 item.quantity--;
             } else if (item && item.quantity === 1) {
-                // Si la cantidad es 1, eliminarlo
                 carrito = carrito.filter(p => p.id !== id);
             }
             guardarCarrito();
@@ -120,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Carga inicial
     renderCarrito();
     actualizarBotonCarrito();
 });

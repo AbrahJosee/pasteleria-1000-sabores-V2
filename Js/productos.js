@@ -1,17 +1,8 @@
-/*
-  productos.js
-  VERSIÓN ACTUALIZADA
-  - Carga productos desde store.js
-  - Convierte las tarjetas en enlaces
-  - Implementa lógica de carrito con cantidades
-*/
-
 document.addEventListener('DOMContentLoaded', function() {
 
     const carritoBtn = document.getElementById('carrito-btn');
     const grid = document.getElementById('productos-grid');
     
-    // --- LÓGICA DE CARRITO (NUEVA) ---
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     function actualizarBotonCarrito() {
@@ -37,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Carrito actualizado:', carrito);
     }
 
-    // --- RENDERIZADO DE PRODUCTOS ---
     if (!grid) {
         actualizarBotonCarrito();
         return;
@@ -72,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         grid.appendChild(col);
     });
 
-    // Asignar eventos a los botones de "Añadir"
     grid.querySelectorAll('.btn-add-cart').forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
