@@ -1,0 +1,142 @@
+/* ----------------------------------------------- */
+/* --- HOJA DE ESTILOS PASTELERÍA MIL SABORES --- */
+/* ----------------------------------------------- */
+
+/* --- 1. Importación de Fuentes (Caso Doc 1) --- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap');
+
+
+/* --- 2. Variables de Color (Caso Doc 1) --- */
+:root {
+    --color-fondo: #FFF5E1;        /* Crema Pastel */
+    --color-texto: #5D4037;        /* Marrón Oscuro */
+    --color-acento-1: #8B4513;     /* Chocolate (Botones) */
+    --color-acento-2: #FFCOCB;     /* Rosa Suave */
+    --color-blanco: #FFFFFF;
+}
+
+/* --- 3. Estilos Globales (Body) --- */
+body {
+    font-family: 'Lato', sans-serif; /* */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+.font-heading {
+    font-family: 'Pacifico', cursive; /* */
+    color: var(--color-acento-1);
+}
+
+/* --- 4. Header y Navegación --- */
+
+/* * CAMBIO: Sub-navegación usa el Rosa Suave como acento
+ */
+.sub-nav {
+    background-color: var(--color-acento-2); /* Rosa Suave */
+    font-size: 0.9rem;
+}
+.sub-nav a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: 700;
+}
+.sub-nav a:hover {
+    color: var(--color-acento-1);
+}
+
+/* * CAMBIO: Barra de navegación principal es blanca y "flota"
+ */
+.navbar {
+    background-color: var(--color-blanco);
+    border-bottom: 1px solid #f0e0c8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+}
+
+.nav-link {
+    color: var(--color-texto);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0 0.5rem;
+}
+.nav-link.active, .nav-link:hover {
+    color: var(--color-acento-1);
+}
+
+.btn-cart {
+    color: var(--color-acento-1);
+    border: 2px solid var(--color-acento-1);
+    font-weight: 700;
+}
+.btn-cart:hover {
+    background-color: var(--color-acento-1);
+    color: white;
+}
+
+/* --- 5. Botones Personalizados Bootstrap --- */
+/* * CAMBIO: Botones primarios vuelven a ser Chocolate
+ */
+.btn-primary {
+    background-color: var(--color-acento-1);
+    border-color: var(--color-acento-1);
+    color: var(--color-blanco); /* Texto blanco para contraste */
+    font-weight: 700;
+}
+.btn-primary:hover {
+    background-color: #6d360f; /* Chocolate más oscuro */
+    border-color: #6d360f;
+    color: var(--color-blanco);
+}
+
+/* --- 6. Tarjetas de Producto (Card) --- */
+.card {
+    background-color: var(--color-blanco); /* Fondo blanco */
+    border: 1px solid #f0e0c8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card-title {
+    color: var(--color-texto);
+    font-weight: 700;
+}
+.card-footer {
+    background-color: #faf6f0; /* Fondo ligero para el footer */
+    border-top: 1px solid #f0e0c8;
+}
+.price-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-acento-1);
+}
+
+/* --- 7. Footer --- */
+/* * CAMBIO: Se mantiene el footer color crema oscuro (acogedor)
+ */
+.footer-mil-sabores {
+    background-color: #f7e9d1; /* Mismo color que sub-nav original */
+    color: var(--color-texto);
+    border-top: 2px solid #f0e0c8;
+}
+.footer-mil-sabores h5 {
+    font-weight: 700;
+    color: var(--color-acento-1);
+}
+.footer-mil-sabores a {
+    text-decoration: none;
+    color: var(--color-texto);
+}
+.footer-mil-sabores a:hover, .footer-mil-sabores .fs-4:hover {
+    color: var(--color-acento-1);
+}
+
+/* Para que las tarjetas-enlace no tengan subrayado */
+a.card-link, a.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
