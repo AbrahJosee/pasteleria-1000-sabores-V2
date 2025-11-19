@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../atoms/input";
 import Button from "../atoms/Button";
 import { validarCorreo, validarRun, esMayorEdad} from "../../utils/script";
-import { addUser } from "../../services/firestoreService";
+import { addUser } from "../../service/firestoreService";
 import { useHistory } from "react-router-dom";
 
 const FormUsuario = () => {
@@ -34,7 +34,7 @@ const FormUsuario = () => {
             <Input id="run" label="RUN" value={form.run} onChange ={handleChange} required />
             <Input id="nombre" label="Nombre" value={form.nombre} onChange ={handleChange} required />
             <Input id="correo" label="Correo" type="email" value={form.correo} onChange ={handleChange} required />
-            <Input id="clave" label="Clave" type="password" value={form.clave} onChange ={handleChange} required />
+            <Input id="password" label="Clave" type="password" value={form.clave} onChange ={handleChange} required />
             <Input id="fecha" label="Fecha de Nacimiento" type="date" value={form.fecha} onChange ={handleChange} required />
             <Button type="submit">Enviar</Button>
             <p style={{color: "crimson"}}>{msg}</p>
