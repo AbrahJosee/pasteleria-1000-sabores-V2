@@ -1,163 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pastelería Mil Sabores - Inicio</title>
-    
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Pastelería Mil Sabores - Tienda Online de Repostería"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../public/Assets/Css/style.css">
-</head>
-<body>
-
-    <header>
-        <div class="sub-nav text-end pe-4 py-1">
-            <a href="Pages/login.html">Iniciar sesión</a> | 
-            <a href="Pages/registro.html">Registrar usuario</a>
-        </div>
-
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand font-heading" href="index.html">
-                    🧁 Pastelería Mil Sabores
-                </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMilSabores" aria-controls="navbarMilSabores" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarMilSabores">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Pages/productos.html">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Pages/nosotros.html">Nosotros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Pages/blogs.html">Blogs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Pages/contacto.html">Contacto</a>
-                        </li>
-                    </ul>
-                    
-                    <div class="d-flex">
-                        <a href="Pages/carrito.html" class="btn btn-cart" id="carrito-btn">
-                            <i class="bi bi-cart"></i> Carrito (0)
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container my-5">
-        <section class="hero-section row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="font-heading display-4">Tienda Online</h1>
-                <p class="fs-5">Famosos por nuestra participación en el récord Guinness de 1995, celebramos 50 años de tradición. Descubre nuestras delicias y vive una experiencia dulce y memorable.</p>
-                <a href="Pages/productos.html" class="btn btn-primary btn-lg">Ver productos</a>
-            </div>
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <img src="/Assets/Torta Circular de Manjar.jpg" class="img-fluid rounded" alt="Pastelería principal">
-            </div>
-        </section>
-
-        <section class="productos-section mt-5 pt-5">
-            <h2 class="text-center font-heading mb-4">Nuestras Delicias</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/Assets/torta cuadrada de chocolate.jpg" class="card-img-top" alt="Torta Cuadrada de Chocolate">
-                        <div class="card-body">
-                            <h5 class="card-title">Torta Cuadrada de Chocolate</h5>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price-text">$45.000 CLP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/Assets/torta cuadrada de frutas.jpg" class="card-img-top" alt="Torta Cuadrada de Frutas">
-                        <div class="card-body">
-                            <h5 class="card-title">Torta Cuadrada de Frutas</h5>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price-text">$50.000 CLP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/Assets/Torta Circular de Vainilla.jpg" class="card-img-top" alt="Torta Circular de Vainilla">
-                        <div class="card-body">
-                            <h5 class="card-title">Torta Circular de Vainilla</h5>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price-text">$40.000 CLP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/Assets/Torta Circular de Manjar.jpg" class="card-img-top" alt="Torta Circular de Manjar">
-                        <div class="card-body">
-                            <h5 class="card-title">Torta Circular de Manjar</h5>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price-text">$42.000 CLP</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-mil-sabores mt-5 py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="font-heading">Pastelería Mil Sabores</h5>
-                    <p>Celebrando 50 años de dulzura y tradición.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <h5>Categorías</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Tortas Cuadradas</a></li>
-                        <li><a href="#">Tortas Circulares</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <h5>Únete a nuestro newsletter</h5>
-                    <form>
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Enter Email">
-                            <button class="btn btn-primary" type="submit">Suscribir</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center">
-                <small>&copy; 2025 Pastelería Mil Sabores. Todos los derechos reservados.</small>
-            </div>
-        </div>
-    </footer>
-
-
+    <link rel="stylesheet" href="%PUBLIC_URL%/Assets/Css/style.css">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Pastelería Mil Sabores - Inicio</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+  </body>
 </html>
