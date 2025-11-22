@@ -1,6 +1,8 @@
 import React from 'react';
+import { useCart } from '../../contexts/CartContext';
 
 const Contacto = () => {
+  const { cartCount } = useCart();
   return (
     <div>
       <header>
@@ -41,7 +43,7 @@ const Contacto = () => {
               </ul>
               <div className="d-flex">
                 <a href="/carrito" className="btn btn-cart" id="carrito-btn">
-                  <i className="bi bi-cart"></i> Carrito (0)
+                  <i className="bi bi-cart"></i> Carrito ({cartCount})
                 </a>
               </div>
             </div>

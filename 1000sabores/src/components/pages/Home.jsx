@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useCart } from '../../contexts/CartContext';
 import FormUsuario from "../molecules/FormUsuario";
 
 const Home = () => {
   const [showForm, setShowForm] = useState(false);
-
-  // Function to show registration form
-  const showRegistrationForm = () => {
-    setShowForm(true);
-  };
+  const { cartCount } = useCart();
 
   // Function to hide registration form
   const hideRegistrationForm = () => {
@@ -19,11 +16,11 @@ const Home = () => {
       <div>
         <header>
           <div className="sub-nav text-end pe-4 py-1">
-            <a href="#" onClick={() => setShowForm(false)}>Volver al Inicio</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); setShowForm(false); }}>Volver al Inicio</a>
           </div>
           <nav className="navbar navbar-expand-lg">
             <div className="container">
-              <a className="navbar-brand font-heading" href="#" onClick={() => setShowForm(false)}>
+              <a className="navbar-brand font-heading" href="/" onClick={(e) => { e.preventDefault(); setShowForm(false); }}>
                 🧁 Pastelería Mil Sabores
               </a>
             </div>
@@ -85,7 +82,7 @@ const Home = () => {
 
               <div className="d-flex">
                 <a href="/carrito" className="btn btn-cart" id="carrito-btn">
-                  <i className="bi bi-cart"></i> Carrito (0)
+                  <i className="bi bi-cart"></i> Carrito ({cartCount})
                 </a>
               </div>
             </div>

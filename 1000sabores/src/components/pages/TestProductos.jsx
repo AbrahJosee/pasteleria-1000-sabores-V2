@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../config/firebase';
-import { collection, getDocs } from 'firebase/firestore';
 import { useCart } from '../../contexts/CartContext';
 
-const Productos = () => {
+const TestProductos = () => {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState([]);
@@ -11,29 +9,6 @@ const Productos = () => {
   const [busqueda, setBusqueda] = useState('');
   const [loading, setLoading] = useState(true);
   const { addItem, cartCount } = useCart();
-
-  // Función para formatear la URL de la imagen
-  const formatearUrlImagen = (url) => {
-    if (!url) return null;
-
-    // Si es una URL absoluta (comienza con http), devolverla tal cual
-    if (url.startsWith('http')) {
-      return url;
-    }
-
-    // Si comienza con /Assets o /assets, mantenerla como está
-    if (url.startsWith('/Assets') || url.startsWith('/assets')) {
-      return url;
-    }
-
-    // Si comienza con Assets o assets, agregar / al inicio
-    if (url.startsWith('Assets') || url.startsWith('assets')) {
-      return '/' + url;
-    }
-
-    // Para otros casos, asumir que es una ruta relativa y agregar /Assets al inicio
-    return `/Assets/${url}`;
-  };
 
   // Función para obtener iconos según la categoría
   const getIconoCategoria = (categoria) => {
@@ -50,142 +25,67 @@ const Productos = () => {
     return iconos[categoria] || '📦';
   };
 
-  // Cargar productos desde Firebase o usar datos de ejemplo
   useEffect(() => {
-    const cargarProductos = async () => {
-      try {
-        setLoading(true);
-
-        // Intentar cargar desde Firebase
-        try {
-          console.log("Intentando leer la colección 'producto' de Firebase...");
-          const querySnapshot = await getDocs(collection(db, 'producto'));
-          console.log("Número de documentos encontrados en Firebase:", querySnapshot.size);
-
-          // Contar documentos
-          let docCount = 0;
-          querySnapshot.forEach((doc) => {
-            console.log(`Documento ${docCount + 1}:`, { id: doc.id, data: doc.data() });
-            docCount++;
-          });
-
-          const productosData = querySnapshot.docs.map(doc => {
-            const data = doc.data();
-            // Mapear posibles nombres de campo para imágenes y otras propiedades
-            return {
-              id: doc.id,
-              ...data,
-              // Asegurar que el campo de imagen se llame consistentemente
-              imagen: data.imagen || data.Image || data.foto || data.Img || data.image || data.Foto || data.Imagen || null,
-              // Asegurar que otros campos tengan nombres consistentes
-              nombre: data.nombre || data.Nombre || data.NOMBRE || 'Sin nombre',
-              precio: data.precio || data.Precio || data.PRECIO || data.PrecioUnitario || data.precioUnitario || 0,
-              categoria: data.categoria || data.Categoria || data.CATEGORIA || 'Sin categoría',
-              descripcion: data.descripcion || data.Descripcion || data.DESCRIPCION || data.descripcion_corta || data.DescripcionCorta || 'Sin descripción'
-            };
-          });
-          console.log("Productos procesados de Firebase:", productosData);
-
-          // Si se cargaron productos de Firebase, usarlos
-          if (productosData.length > 0) {
-            console.log("Hay productos en Firebase, usándolos...");
-            setProductos(productosData);
-            setProductosFiltrados(productosData);
-
-            // Obtener categorías únicas
-            const todasLasCategorias = productosData.map(p => {
-              // Asegurar que la categoría esté en el formato correcto
-              const categoria = p.categoria;
-              return typeof categoria === 'string' ? categoria.trim() : 'Sin categoría';
-            });
-
-            const categoriasUnicas = [...new Set(todasLasCategorias)].filter(cat => cat && cat !== ''); // Filtrar categorías vacías
-
-            console.log("Categorías encontradas en Firebase:", categoriasUnicas);
-            setCategorias(['Todas', ...categoriasUnicas]);
-          } else {
-            console.log("No se encontraron productos en Firebase, usando datos de ejemplo");
-            cargarDatosEjemplo();
-          }
-        } catch (firebaseError) {
-          console.error('Error al cargar productos de Firebase:', firebaseError);
-          console.error('Mensaje de error:', firebaseError.message);
-
-          // Si hay error con Firebase, usar datos de ejemplo
-          console.log("Error con Firebase, usando datos de ejemplo");
-          cargarDatosEjemplo();
-        }
-      } catch (error) {
-        console.error("Error general en la carga de productos:", error);
-        cargarDatosEjemplo();
-      } finally {
-        setLoading(false);
+    // Cargar productos de ejemplo
+    const productosEjemplo = [
+      {
+        id: '1',
+        nombre: 'Torta Cuadrada de Chocolate',
+        precio: 45000,
+        categoria: 'Tortas Cuadradas',
+        descripcion: 'Deliciosa torta de chocolate con crema',
+        imagen: '/Assets/torta cuadrada de chocolate.jpg'
+      },
+      {
+        id: '2',
+        nombre: 'Torta Cuadrada de Frutas',
+        precio: 50000,
+        categoria: 'Tortas Cuadradas',
+        descripcion: 'Torta fresca con frutas de temporada',
+        imagen: '/Assets/torta cuadrada de frutas.jpg'
+      },
+      {
+        id: '3',
+        nombre: 'Torta Circular de Vainilla',
+        precio: 40000,
+        categoria: 'Tortas Circulares',
+        descripcion: 'Clásica torta de vainilla con decoración',
+        imagen: '/Assets/Torta Circular de Vainilla.jpg'
+      },
+      {
+        id: '4',
+        nombre: 'Torta Circular de Manjar',
+        precio: 42000,
+        categoria: 'Tortas Circulares',
+        descripcion: 'Torta tradicional chilena con manjar',
+        imagen: '/Assets/Torta Circular de Manjar.jpg'
+      },
+      {
+        id: '5',
+        nombre: 'Torta Especial de Cumpleaños',
+        precio: 55000,
+        categoria: 'Tortas especiales',
+        descripcion: 'Torta decorada para celebraciones especiales',
+        imagen: '/Assets/Torta Especial de Boda.jpg'
+      },
+      {
+        id: '6',
+        nombre: 'Postre Individual de Frutas',
+        precio: 8000,
+        categoria: 'Postres individuales',
+        descripcion: 'Postre fresco con frutas de estación',
+        imagen: '/Assets/Galletas Veganas de Avena.jpg'
       }
-    };
+    ];
 
-    // Función para cargar datos de ejemplo
-    const cargarDatosEjemplo = () => {
-      const productosEjemplo = [
-        {
-          id: '1',
-          nombre: 'Torta Cuadrada de Chocolate',
-          precio: 45000,
-          categoria: 'Tortas Cuadradas',
-          descripcion: 'Deliciosa torta de chocolate con crema',
-          imagen: '/Assets/torta cuadrada de chocolate.jpg'
-        },
-        {
-          id: '2',
-          nombre: 'Torta Cuadrada de Frutas',
-          precio: 50000,
-          categoria: 'Tortas Cuadradas',
-          descripcion: 'Torta fresca con frutas de temporada',
-          imagen: '/Assets/torta cuadrada de frutas.jpg'
-        },
-        {
-          id: '3',
-          nombre: 'Torta Circular de Vainilla',
-          precio: 40000,
-          categoria: 'Tortas Circulares',
-          descripcion: 'Clásica torta de vainilla con decoración',
-          imagen: '/Assets/Torta Circular de Vainilla.jpg'
-        },
-        {
-          id: '4',
-          nombre: 'Torta Circular de Manjar',
-          precio: 42000,
-          categoria: 'Tortas Circulares',
-          descripcion: 'Torta tradicional chilena con manjar',
-          imagen: '/Assets/Torta Circular de Manjar.jpg'
-        },
-        {
-          id: '5',
-          nombre: 'Torta Especial de Cumpleaños',
-          precio: 55000,
-          categoria: 'Tortas especiales',
-          descripcion: 'Torta decorada para celebraciones especiales',
-          imagen: '/Assets/Torta Especial de Boda.jpg'
-        },
-        {
-          id: '6',
-          nombre: 'Postre Individual de Frutas',
-          precio: 8000,
-          categoria: 'Postres individuales',
-          descripcion: 'Postre fresco con frutas de estación',
-          imagen: '/Assets/Galletas Veganas de Avena.jpg'
-        }
-      ];
+    setProductos(productosEjemplo);
+    setProductosFiltrados(productosEjemplo);
 
-      setProductos(productosEjemplo);
-      setProductosFiltrados(productosEjemplo);
+    // Obtener categorías únicas
+    const categoriasUnicas = [...new Set(productosEjemplo.map(p => p.categoria))];
+    setCategorias(['Todas', ...categoriasUnicas]);
 
-      // Obtener categorías únicas de los productos de ejemplo
-      const categoriasUnicas = [...new Set(productosEjemplo.map(p => p.categoria))];
-      console.log("Categorías de ejemplo:", categoriasUnicas);
-      setCategorias(['Todas', ...categoriasUnicas]);
-    };
-
-    cargarProductos();
+    setLoading(false);
   }, []);
 
   // Filtrar productos por categoría o búsqueda
@@ -194,10 +94,7 @@ const Productos = () => {
 
     // Filtrar por categoría si no es "Todas"
     if (categoriaSeleccionada !== 'Todas') {
-      resultado = resultado.filter(p => {
-        const categoriaProducto = typeof p.categoria === 'string' ? p.categoria.trim() : 'Sin categoría';
-        return categoriaProducto === categoriaSeleccionada;
-      });
+      resultado = resultado.filter(p => p.categoria === categoriaSeleccionada);
     }
 
     // Filtrar por búsqueda
@@ -297,22 +194,18 @@ const Productos = () => {
         <section className="categorias-section">
           <h2 className="section-title">Categorías</h2>
           <div className="categorias-grid">
-            {categorias && categorias.length > 0 ? (
-              categorias.map((categoria, index) => (
-                <div
-                  key={index}
-                  className={`categoria-card ${categoriaSeleccionada === categoria ? 'active' : ''}`}
-                  onClick={() => manejarFiltroCategoria(categoria)}
-                >
-                  <div className="categoria-img">
-                    {getIconoCategoria(categoria)}
-                  </div>
-                  <div className="categoria-nombre">{categoria}</div>
+            {categorias.map((categoria, index) => (
+              <div
+                key={index}
+                className={`categoria-card ${categoriaSeleccionada === categoria ? 'active' : ''}`}
+                onClick={() => manejarFiltroCategoria(categoria)}
+              >
+                <div className="categoria-img">
+                  {getIconoCategoria(categoria)}
                 </div>
-              ))
-            ) : (
-              <p className="text-center">No hay categorías disponibles</p>
-            )}
+                <div className="categoria-nombre">{categoria}</div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -341,7 +234,7 @@ const Productos = () => {
           <h2 className="section-title">
             {categoriaSeleccionada === 'Todas'
               ? `Todos los productos (${productosFiltrados.length})`
-              : `${categoriaSeleccionada} (${productosFiltrados.length} producto${productosFiltrados.length !== 1 ? 's' : ''})`
+              : `${categoriaSeleccionada} (${productosFiltrados.length} productos)`
             }
           </h2>
           {productosFiltrados.length === 0 ? (
@@ -362,7 +255,7 @@ const Productos = () => {
               {productosFiltrados.map((producto) => (
                 <div key={producto.id} className="producto-card">
                   <img
-                    src={formatearUrlImagen(producto.imagen) || 'https://via.placeholder.com/300x200?text=Sin+Imagen'}
+                    src={producto.imagen || 'https://via.placeholder.com/300x200?text=Sin+Imagen'}
                     alt={producto.nombre}
                     className="producto-imagen"
                     onError={(e) => {
@@ -402,4 +295,4 @@ const Productos = () => {
   );
 };
 
-export default Productos;
+export default TestProductos;

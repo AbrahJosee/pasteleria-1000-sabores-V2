@@ -1,6 +1,8 @@
 import React from 'react';
+import { useCart } from '../../contexts/CartContext';
 
 const Blogs = () => {
+  const { cartCount } = useCart();
   return (
     <div>
       <header>
@@ -41,7 +43,7 @@ const Blogs = () => {
               </ul>
               <div className="d-flex">
                 <a href="/carrito" className="btn btn-cart" id="carrito-btn">
-                  <i className="bi bi-cart"></i> Carrito (0)
+                  <i className="bi bi-cart"></i> Carrito ({cartCount})
                 </a>
               </div>
             </div>
@@ -139,11 +141,11 @@ const Blogs = () => {
                   <div className="card-body">
                     <h5 className="card-title">Categorías</h5>
                     <ul className="list-unstyled">
-                      <li className="mb-2"><a href="#">Recetas</a></li>
-                      <li className="mb-2"><a href="#">Tutoriales</a></li>
-                      <li className="mb-2"><a href="#">Historia de la Repostería</a></li>
-                      <li className="mb-2"><a href="#">Ingredientes</a></li>
-                      <li className="mb-2"><a href="#">Eventos</a></li>
+                      <li className="mb-2"><a href="/productos?categoria=Recetas">Recetas</a></li>
+                      <li className="mb-2"><a href="/productos?categoria=Tutoriales">Tutoriales</a></li>
+                      <li className="mb-2"><a href="/productos?categoria=Historia de la Repostería">Historia de la Repostería</a></li>
+                      <li className="mb-2"><a href="/productos?categoria=Ingredientes">Ingredientes</a></li>
+                      <li className="mb-2"><a href="/productos?categoria=Eventos">Eventos</a></li>
                     </ul>
                   </div>
                 </div>

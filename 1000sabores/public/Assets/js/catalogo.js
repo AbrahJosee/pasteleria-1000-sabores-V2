@@ -111,16 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function obtenerIconoCategoria(categoria) {
     const iconos = {
-      'Ropa': '👕',
-      'Tecnología': '💻',
-      'Electrónica': '📱',
-      'Hogar': '🏠',
-      'Deportes': '⚽',
-      'Zapatos': '👟',
-      'Accesorios': '🕶️',
-      'Libros': '📚',
-      'Juguetes': '🧸',
-      'Belleza': '💄'
+      'Tortas Cuadradas': '🎂',
+      'Tortas Circulares': '🍰',
+      'Tortas especiales': '🧁',
+      'Productos sin azúcar': '🍩',
+      'Postres individuales': '🍪',
+      'Productos sin gluten': '🥧',
+      'Pasteleria tradicional': '🍮',
+      'Productos Veganos': '🥥',
     };
     return iconos[categoria] || '📦';
   }
